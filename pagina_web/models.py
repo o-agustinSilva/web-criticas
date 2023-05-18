@@ -1,5 +1,5 @@
 from django.db import models
-from faker import Faker
+from faker import Faker # CMD: pip install faker 
 
 # ----------- Clases -----------
 class Director(models.Model):
