@@ -1,3 +1,10 @@
+a{
+    text-decoration: none;
+}
+
+ul{
+    list-style: none;
+}
 
 #contenedor-uno{
     /*background: linear-gradient(135deg, rgba(255, 255, 255, 0.767), rgba(255, 255, 255, 0));*/
@@ -267,21 +274,43 @@ body{
 
 
 /* ---- ----- ----- Media Queries ----- ----- ----- */
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 1600px) {
 	.peliculas-recomendadas .contenedor-carousel {
 		overflow: visible;
 	}
 
 	.peliculas-recomendadas .contenedor-carousel .carousel {
 		display: grid;
-		grid-template-columns: repeat(3, 1fr);
-		gap: 20px;
-	}
+		grid-template-columns: repeat(4, 1fr);
+		gap: 15px;
+	} 
 
 	.peliculas-recomendadas .indicadores,
 	.peliculas-recomendadas .flecha-izquierda,
 	.peliculas-recomendadas .flecha-derecha {
 		display: none;
+	}
+
+	/* Estilos para max-width: 1000px */
+	@media screen and (max-width: 1000px) {
+		.peliculas-recomendadas .contenedor-carousel .carousel {
+			grid-template-columns: repeat(3, 1fr);
+			gap: 15px;
+		} 
+	}
+
+	/* Estilos para max-width: 800px */
+	@media screen and (max-width: 800px) {
+		.peliculas-recomendadas .contenedor-carousel .carousel {
+			grid-template-columns: repeat(2, 1fr);
+			gap: 10px;
+		} 
+
+		.peliculas-recomendadas .indicadores,
+		.peliculas-recomendadas .flecha-izquierda,
+		.peliculas-recomendadas .flecha-derecha {
+			display: none;
+		}
 	}
 
     .tarjeta{
@@ -418,4 +447,46 @@ body{
     color: #ffffff;
     border: none;
     opacity: 1;
+}
+
+/* ----------------- DETALLES DE LA PELICULA -------------- */
+.pelicula-resenia{
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color:white;
+}
+
+.mono-criticon{
+    max-width: 100%;
+    height: auto;
+    margin-left: 29%;
+}
+
+.detalles-pelicula{
+    overflow-x: hidden;
+}
+
+.resumen-pelicula{
+    position: relative;
+    display: flex;
+  }
+  
+.cuadro-dialogo{
+    position: absolute;
+    height: 50%;
+    margin-top: 18%;
+    margin-left: 3%;
+}
+
+.resumen-pelicula h1 {
+    position: relative;
+    line-height: 1;
+    z-index: 1;
+}
+
+.contenedor-resumen{
+    display:flex;
+    align-items: center;
+    justify-content: center;
 }

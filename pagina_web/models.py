@@ -38,6 +38,8 @@ class Pelicula(models.Model):
 
     # Datos de la pelicula
     anio_pelicula   = models.IntegerField(default = None)
+    puntaje         = models.IntegerField(default = None)
+    foto            = models.ImageField(upload_to='imagenes_peliculas/', blank=True, null=True)
     nombre          = models.CharField(max_length = 70)
     resumen         = models.CharField(max_length = 1000)
     categoria       = models.CharField(
@@ -50,37 +52,12 @@ class Pelicula(models.Model):
     director        = models.ForeignKey(Director, on_delete=models.CASCADE)
     actores         = models.ManyToManyField(Actor)
 
-class Usuario(models.Model):
-
-    # Choices
-    ROLES_USUARIOS = [
-                        ("USUARIO", "Usuario"),
-                        ("ADMINISTRADOR", "Administrador"),
-                     ] 
-
-    # Datos de los usuarios
-    usuario     = models.CharField(max_length = 15)
-    contrasenia = models.CharField(max_length = 20)
-    rol         = models.CharField(
-                                    max_length  = 13,
-                                    choices     = ROLES_USUARIOS,
-                                    default     = "USUARIO",
-                                  )
-    
-    def set_password(self, raw_password):
-        # Lógica para establecer y almacenar la contraseña de manera segura
-        self.contrasenia = make_password(raw_password)
-
-    def check_password(self, raw_password):
-        # Lógica para verificar la contraseña ingresada por el usuario
-        return check_password(raw_password, self.contrasenia)
-    
 class Critica(models.Model):
     
     #Datos de las criticas
     critica     = models.CharField(max_length = 1000)
-    valoracion  = models.IntegerField(default = None)
-    usuario     = models.ForeignKey(Usuario, on_delete=models.CASCADE)
+    usuario     = models.CharField(max_length=20)
+    valoracion  = models.IntegerField(default = None) 
     pelicula    = models.ForeignKey(Pelicula, on_delete=models.CASCADE)
 
 '''

@@ -1,0 +1,28 @@
+{% extends 'master.html' %}
+
+{%  load static %}
+
+{% block content %}
+    <div class="container-fluid detalles-pelicula">
+        <div class="row">
+            <div class="col-12 pelicula-resenia">
+                    <h1>{{ pelicula.nombre }}</h1>
+                    <p>{{ pelicula.anio_pelicula }}</p>
+                    <img src="{{ pelicula.foto.url }}" alt="Imagen de la película">
+            </div>
+        </div>
+
+        <div class="row d-flex">
+            <div class="col resumen-pelicula">
+                <div class="div contenedor-resumen">
+                    <h1>EL SEÑOR DE LOS ANILLOS, 10/10.</h1>
+                    <img src="{% static 'imagenes/cuadro_dialogo.svg' %}" alt="" class="cuadro-dialogo">
+                </div>
+                <img src="{% static 'imagenes/Mono.png' %}" alt="" class="mono-criticon">
+            </div>
+        </div>
+        
+        
+    </div>
+{% endblock %}
+

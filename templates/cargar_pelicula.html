@@ -1,0 +1,15 @@
+{% extends 'master.html' %}
+
+{% block content %}
+<style>
+    form{
+        color: white;
+    }
+</style>
+  <h2 style="color:white;">Cargar Película</h2>
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Guardar</button>
+  </form>
+{% endblock %}
