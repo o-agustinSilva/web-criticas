@@ -49,7 +49,7 @@ body{
 .header{
     z-index: 10;
     width: 100%;
-    position: sticky;
+    position: absolute;
     top: 0;
 }
   
@@ -339,7 +339,7 @@ body{
 }
 
 
-/* ------------ TERCERA PARTE ------------*/
+/* ------------ TARJETAS ------------*/
 *{
     font-family: poppins;
     box-sizing: border-box;
@@ -366,7 +366,7 @@ body{
 
 .tarjeta-imagen{
     width: 250px;
-    height: 400px;
+    height: 480px;
     border-radius: 10px;
     overflow: hidden;
 }
@@ -380,7 +380,7 @@ body{
 .tarjeta-detalles{
     padding: 20px;
     background: linear-gradient(90deg, #202020 20%, #222222);
-    width: 500px;
+    width: 360px;
     border-radius: 0px 10px 10px 0px;
 }
 
@@ -450,33 +450,28 @@ body{
 }
 
 /* ----------------- DETALLES DE LA PELICULA -------------- */
-.pelicula-resenia{
+.pelicula-resenia {
     justify-content: center;
     align-items: center;
     text-align: center;
-    color:white;
+    color: white;
 }
 
-.mono-criticon{
-    max-width: 100%;
-    height: auto;
-    margin-left: 29%;
+.mono-criticon {
+    max-width: 1500px;
+    height: 800px;
+    z-index: 0;
+    margin-left: 935px;
+    pointer-events: none;
 }
 
-.detalles-pelicula{
+.detalles-pelicula {
     overflow-x: hidden;
 }
 
-.resumen-pelicula{
+.resumen-pelicula {
     position: relative;
     display: flex;
-  }
-  
-.cuadro-dialogo{
-    position: absolute;
-    height: 50%;
-    margin-top: 18%;
-    margin-left: 3%;
 }
 
 .resumen-pelicula h1 {
@@ -485,8 +480,196 @@ body{
     z-index: 1;
 }
 
-.contenedor-resumen{
-    display:flex;
-    align-items: center;
+.contenedor-resumen {
+    font-size: 31px;
+    position: absolute;
+    top: 100px;
+    left: 100px;
+    background: linear-gradient(90deg, #202020 20%, #222222);
+    color: #8f8f8f;
+    height: 450px;
+    width: 1400px;
+    display: block;
+    justify-items: first baseline;
+    overflow: auto;
+    border-radius: 12px;
+}
+
+.contenedor-resumen p{
+   padding: 10px
+}
+
+/* --------- SCROLL ----------*/
+.contenedor-resumen::-webkit-scrollbar {
+    width: 12px;
+}
+
+.contenedor-resumen::-webkit-scrollbar-thumb {
+    background-color: #8f8f8f;
+    border-radius: 6px;
+}
+
+.contenedor-resumen::-webkit-scrollbar-thumb:hover {
+    background-color: #a0a0a0;
+}
+
+.contenedor-resumen::-webkit-scrollbar-track {
+    background-color: #222222;
+}
+
+.contenedor-resumen::-webkit-scrollbar-track:hover {
+    background-color: #202020;
+}
+
+/* ------- CRITICAS Y FORM -------- */
+.critica{
+    color: white;
+    justify-content: left;
+    align-items: left;
+    background: linear-gradient(90deg, #202020 20%, #222222);
+    border-radius: 20px;
+
+    max-height: 420px;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #8f8f8f #222222;
+    overflow-x: hidden;
+}
+
+.container-critica-usuario{
+    padding-top: 20px;
+}
+
+.critica .contenido-usuario h1{
+    font-size: 20px;
+}
+.critica .contenido-usuario p{
+    font-size: 15px;
+}
+
+.contenido-usuario h1,
+.contenido-usuario p {
+  padding-left: 15px;
+  padding-top: 5px;
+}
+
+
+.critica img{
+    border-radius: 50%;
+    margin-top: 10px;
+    margin-left: 15px;
+    max-height: 70px;
+    max-width: 70px;
+}
+
+.contenido-usuario{
+    padding-top: 5px;
+}
+
+.comment {
+    max-height: 3em;
+    overflow: hidden;
+}
+
+.ver-mas,
+.mostrar-menos {
+    display: none;
+    color:gray;
+    margin-left: 13px;
+    margin-top: -10px; /* Ajusta este valor según tu preferencia */
+}
+
+.ver-mas:target + .comment,
+.mostrar-menos:target + .comment {
+    max-height: none;
+}
+
+.ver-mas:target {
+    display: none;
+}
+
+.ver-mas:target ~ .mostrar-menos {
+    display: inline;
+}
+
+.comment.expandido {
+    max-height: none;
+}
+
+
+.critica::-webkit-scrollbar {
+  width: 12px;
+}
+
+.critica::-webkit-scrollbar-thumb {
+  background-color: #8f8f8f;
+  border-radius: 6px;
+}
+
+.critica::-webkit-scrollbar-thumb:hover {
+  background-color: #a0a0a0;
+}
+
+.critica::-webkit-scrollbar-track {
+  background-color: #222222;
+}
+
+.critica::-webkit-scrollbar-track:hover {
+  background-color: #202020;
+}
+  
+/* -------------- FORMS --------------*/
+.container-form .form-group {
+    margin-bottom: 20px;
+}
+
+.critica-form{
+    color: white;
+    justify-content: left;
+    align-items: left;
+    background: linear-gradient(90deg, #202020 20%, #222222);
+    border-radius: 20px;
+}
+
+.form-group textarea {
+    height: 155px; /* Puedes ajustar este valor según tus necesidades */
+}
+
+.titulo-resenia{
+    font-size: 35px;
+}
+
+.titulo-comentarios{
+    font-size: 35px;
+    padding-left: 15px;
+}
+
+.form-critica{
+    color: white;
+    position: sticky;
+}
+
+.container-boton{
+    padding-top: 22px;
+}
+
+.form-critica .boton-form{
+    background-color: #0d6bf7;  
+    min-width: 160px;
+    height: 38px;
+    border-radius: var(--bs-border-radius);
+    display: flex;
     justify-content: center;
+    align-items: center;
+    color: #ffffff;
+    font-size: 1rem;
+    border: none;
+}
+
+.form-critica .boton-form:hover{
+    background-color: #f8346f;
+    transition: all ease 0.3s;
+    color: #ffffff;
+    border: none;
+    opacity: 1;
 }

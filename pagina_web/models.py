@@ -56,8 +56,10 @@ class Critica(models.Model):
     
     #Datos de las criticas
     critica     = models.CharField(max_length = 1000)
-    usuario     = models.CharField(max_length=20)
-    valoracion  = models.IntegerField(default = None) 
+    nombre      = models.CharField(max_length = 70, default = 'None')
+    correo      = models.CharField(max_length=35, default='None')
+    estado      = models.CharField(max_length=20, default = None)
+    puntaje     = models.IntegerField(default = None) 
     pelicula    = models.ForeignKey(Pelicula, on_delete=models.CASCADE)
 
 '''

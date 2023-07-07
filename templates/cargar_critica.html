@@ -1,0 +1,43 @@
+{% extends 'master.html' %}
+
+{% block content %}
+<form class="form-critica" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="container-form form-group mb-3">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="titulo-resenia">Escribe tu reseña acerca de la película</h1>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 form-group">
+                <label for="{{ form.nombre.id_for_label }}">Nombre:</label>
+                <input type="text" id="{{ form.nombre.id_for_label }}" placeholder="Nombre" name="{{ form.nombre.name }}" value="{{ form.nombre.value }}" class="form-control">
+            </div>
+
+            <div class="col-md-6 form-group">
+                <label for="{{ form.correo.id_for_label }}">Correo:</label>
+                <input type="text" id="{{ form.correo.id_for_label }}" placeholder="Correo electrónico" name="{{ form.correo.name }}" value="{{ form.correo.value }}" class="form-control">
+            </div>
+        </div>
+        
+        <div class="col-12 form-group">
+            <label for="{{ form.critica.id_for_label }}">Crítica:</label>
+            <textarea id="{{ form.critica.id_for_label }}" name="{{ form.critica.name }}" placeholder="Escribe tu crítica" class="form-control">{{ form.critica.value }}</textarea>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-6 form-group">
+                <label for="{{ form.puntaje.id_for_label }}">Puntaje:</label>
+                <input type="text" id="{{ form.puntaje.id_for_label }}" placeholder="Puntaje" name="{{ form.puntaje.name }}" value="{{ form.puntaje.value }}" class="form-control">
+            </div>
+            <div class="col-md-6 form-group container-boton">
+                <button type="submit" class="boton-form">Publicar reseña</button>
+            </div>
+        </div>
+    </div>
+
+</form>
+{% endblock %}
+

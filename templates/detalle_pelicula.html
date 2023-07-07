@@ -5,7 +5,7 @@
 {% block content %}
     <div class="container-fluid detalles-pelicula">
         <div class="row">
-            <div class="col-12 pelicula-resenia">
+            <div class="col-md-12 pelicula-resenia">
                     <h1>{{ pelicula.nombre }}</h1>
                     <p>{{ pelicula.anio_pelicula }}</p>
                     <img src="{{ pelicula.foto.url }}" alt="Imagen de la película">
@@ -13,16 +13,127 @@
         </div>
 
         <div class="row d-flex">
-            <div class="col resumen-pelicula">
-                <div class="div contenedor-resumen">
-                    <h1>EL SEÑOR DE LOS ANILLOS, 10/10.</h1>
-                    <img src="{% static 'imagenes/cuadro_dialogo.svg' %}" alt="" class="cuadro-dialogo">
+            <div class="resumen-pelicula">
+                <div class="col d-flex">
+                    <div class="contenedor-resumen">
+                    
+                    <p>Mi estimado señor,</br></br>
+                        Permítame ofrecerle mi distinguida apreciación de la obra maestra literaria y cinematográfica conocida como "El Señor de los Anillos: La Comunidad del Anillo". Es innegable que esta epopeya, concebida por el venerado autor J.R.R. Tolkien, posee una magnificencia atemporal que cautiva los sentidos y deleita a la mente más refinada.</p>
+                    <p>La trama, engalanada con una prosa exquisita y una narrativa hábilmente entrelazada, nos transporta a un mundo de fantasía con una profundidad y riqueza inigualables. Tolkien, con maestría indiscutible, crea un universo vasto y convincente, donde la lucha del bien contra el mal adquiere proporciones épicas. A través de su pluma, se explora el valor de la amistad, el sacrificio desinteresado y la búsqueda de la redención, principios que trascienden las eras y las culturas.</p>
+                    </div>
+                    <img src="{% static 'imagenes/Mono.png' %}" alt="" class="mono-criticon">
                 </div>
-                <img src="{% static 'imagenes/Mono.png' %}" alt="" class="mono-criticon">
             </div>
         </div>
         
-        
+        <div class="row">
+
+            <div class="col-6 container-criticas">
+                <div class="critica">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h1 class="titulo-comentarios">El veredicto de los chimpancés</h1>
+                        </div>
+                        <div class="row container-critica-usuario">
+                            <div class="col-md-1 foto-usuario">
+                                <img src="https://img.freepik.com/vector-premium/chimpance-bebe-dibujos-animados-sosteniendo-platano_29190-4734.jpg" alt="user_pic">
+                            </div>
+                            <div class="col-md-11 contenido-usuario">
+                                <h1>DIOS CHIMPANCÉ</h1>
+                                <p class="comment">A chimpancé gustar, chimpancé dar 5 bananas</p>
+                                <a href="#" class="ver-mas" onclick="expandirComentario(event)">Ver más</a>
+                                <a href="#" class="mostrar-menos" onclick="contraerComentario(event)">Mostrar menos</a>
+                            </div>
+                        </div>
+                        <div class="row container-critica-usuario">
+                            <div class="col-md-1 foto-usuario">
+                                <img src="https://img.freepik.com/vector-premium/chimpance-bebe-dibujos-animados-sosteniendo-platano_29190-4734.jpg" alt="user_pic">
+                            </div>
+                            <div class="col-md-11 contenido-usuario">
+                                <h1>SEMIDIOS CHIMPANCÉ</h1>
+                                <p class="comment">Sobrevalorada. Le doy 1 banana y estoy siendo bueno.</br>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Accusantium enim nam quaerat, eaque maiores necessitatibus dolorem perferendis inventore eius, ratione temporibus natus voluptatem ipsa iusto magni ad, unde ea dolore?</p>
+                                <a href="#" class="ver-mas" onclick="expandirComentario(event)">Ver más</a>
+                                <a href="#" class="mostrar-menos" onclick="contraerComentario(event)">Mostrar menos</a>
+                            </div>
+                        </div>
+                        <div class="row container-critica-usuario">
+                            <div class="col-md-1 foto-usuario">
+                                <img src="https://img.freepik.com/vector-premium/chimpance-bebe-dibujos-animados-sosteniendo-platano_29190-4734.jpg" alt="user_pic">
+                            </div>
+                            <div class="col-md-11 contenido-usuario">
+                                <h1>SEMIDIOS CHIMPANCÉ</h1>
+                                <p class="comment">Sobrevalorada. Le doy 1 banana y estoy siendo bueno.</br>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Accusantium enim nam quaerat, eaque maiores necessitatibus dolorem perferendis inventore eius, ratione temporibus natus voluptatem ipsa iusto magni ad, unde ea dolore?</p>
+                                <a href="#" class="ver-mas" onclick="expandirComentario(event)">Ver más</a>
+                                <a href="#" class="mostrar-menos" onclick="contraerComentario(event)">Mostrar menos</a>
+                            </div>
+                        </div>
+                        <div class="row container-critica-usuario">
+                            <div class="col-md-1 foto-usuario">
+                                <img src="https://img.freepik.com/vector-premium/chimpance-bebe-dibujos-animados-sosteniendo-platano_29190-4734.jpg" alt="user_pic">
+                            </div>
+                            <div class="col-md-11 contenido-usuario">
+                                <h1>SEMIDIOS CHIMPANCÉ</h1>
+                                <p class="comment">Sobrevalorada. Le doy 1 banana y estoy siendo bueno.</br>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Accusantium enim nam quaerat, eaque maiores necessitatibus dolorem perferendis inventore eius, ratione temporibus natus voluptatem ipsa iusto magni ad, unde ea dolore?</p>
+                                <a href="#" class="ver-mas" onclick="expandirComentario(event)">Ver más</a>
+                                <a href="#" class="mostrar-menos" onclick="contraerComentario(event)">Mostrar menos</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            
+
+            <div class="col-6 critica">
+                {% include 'cargar_critica.html' %}
+            </div>
+        </div>
     </div>
+
+    <script>
+        function expandirComentario(event) {
+            event.preventDefault();
+            var verMasLink = event.target;
+            var comentario = verMasLink.previousElementSibling;
+            comentario.classList.add("expandido");
+            verMasLink.style.display = "none";
+            verMasLink.nextElementSibling.style.display = "inline";
+        }
+        
+        function contraerComentario(event) {
+            event.preventDefault();
+            var mostrarMenosLink = event.target;
+            var comentario = mostrarMenosLink.previousElementSibling.previousElementSibling;
+            comentario.classList.remove("expandido");
+            mostrarMenosLink.style.display = "none";
+            mostrarMenosLink.previousElementSibling.style.display = "inline";
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            var comments = document.getElementsByClassName("comment");
+          
+            for (var i = 0; i < comments.length; i++) {
+              var comment = comments[i];
+              var verMasLink = comment.nextElementSibling;
+              var mostrarMenosLink = verMasLink.nextElementSibling;
+          
+              if (comment.scrollHeight > comment.offsetHeight) {
+                verMasLink.style.display = "inline";
+                comment.classList.add("collapsed"); // Agregar clase "collapsed" al comentario inicialmente
+                verMasLink.addEventListener("click", function() {
+                  comment.classList.remove("collapsed"); // Quitar clase "collapsed" al hacer clic en "Ver más"
+                });
+                mostrarMenosLink.addEventListener("click", function() {
+                  comment.classList.add("collapsed"); // Agregar clase "collapsed" al hacer clic en "Mostrar menos"
+                });
+              } else {
+                verMasLink.style.display = "none";
+              }
+            }
+          });
+          
+          
+          
+    </script>
 {% endblock %}
 

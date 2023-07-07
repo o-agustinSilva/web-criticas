@@ -43,3 +43,16 @@ def cargar_pelicula(request):
     else:
         form = PeliculaForm()
     return render(request, 'cargar_pelicula.html', {'form': form})
+
+# Función para cargar una crítica
+def crear_critica(request):
+    if request.method == 'POST':
+        form = CriticaForm(request.POST)
+        if form.is_valid():
+            critica = form.save()  # Guardar la nueva crítica en la base de datos
+            # Hacer algo más con la nueva crítica...
+    else:
+        form = CriticaForm()
+    
+    context = {'form': form}
+    return render(request, 'cargar_critica.html', context)
