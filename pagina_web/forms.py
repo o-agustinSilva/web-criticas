@@ -1,5 +1,6 @@
 from django import forms
 from pagina_web.models import *
+from django.core.validators import MinValueValidator, MaxValueValidator
 
 class PeliculaForm(forms.ModelForm):
     class Meta:
@@ -8,6 +9,12 @@ class PeliculaForm(forms.ModelForm):
 
 
 class CriticaForm(forms.ModelForm):
+
+    puntaje = forms.IntegerField(
+        validators=[MinValueValidator(1), MaxValueValidator(5)]
+    )
+    
     class Meta:
         model = Critica
-        fields = ['critica', 'correo', 'nombre', 'estado', 'puntaje', 'pelicula']
+        fields = ['critica', 'correo', 'nombre', 'puntaje']
+

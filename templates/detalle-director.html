@@ -1,0 +1,91 @@
+{% extends 'master.html' %}
+
+{%  load static %}
+
+{% block content %}
+
+    {% include 'header.html' %}
+
+    <div class="container-fluid detalles-pelicula">
+        <div id="fila-pelicula" class="row">
+            <div class="col-md-2 persona-detalles">
+                <img src="{{ director.foto.url }}" alt="Imagen del director" style="width: 280px; height: 390px;">
+            </div>
+            <div class="col-md-10 persona-detalles">
+                <h1>{{ director.nombre }}</h1>
+                <p>{{ director.resumen_bibliografico }}</p>
+                <p>Nacionalidad: {{ director.nacionalidad}} </p>
+                <p>Año de nacimiento: {{ director.anio_nacimiento}} </p>
+            </div>            
+        </div>
+    </div>
+
+    <div class="peliculas-recomendadas contenedor">
+        <div class="contenedor-titulo-controles">
+          <h2 style="color:white; font-size: 32px; padding-top: 10px;">Peliculas que dirigió</h2>
+          <div class="indicadores"></div>
+        </div>
+
+        <div class="contenedor-principal">
+          <button role="button" class="flecha-izquierda"><i class="fas fa-angle-left"></i></button>
+  
+          <div class="contenedor-carousel">
+                <div class="carousel">
+                    {% for pelicula in peliculas%}
+                    <div class="pelicula">
+                        <a href="{% url 'PeliculaView' id=pelicula.id%}"><img src="{{ pelicula.foto.url}}" alt=""></a>
+                    </div>
+                    {%endfor%}
+                </div>
+            </div>
+  
+          <button role="button" class="flecha-derecha"><i class="fas fa-angle-right"></i></button>
+        </div>
+      </div> 
+
+    <script>
+        const contenedoresPrincipales = document.querySelectorAll('.contenedor-principal');
+    
+          contenedoresPrincipales.forEach((contenedor) => {
+          const fila = contenedor.querySelector('.contenedor-carousel');
+          const peliculas = contenedor.querySelectorAll('.pelicula');
+    
+          const flechaIzquierda = contenedor.querySelector('.flecha-izquierda');
+          const flechaDerecha = contenedor.querySelector('.flecha-derecha');
+    
+          flechaDerecha.addEventListener('click', () => {
+            fila.scrollLeft += fila.offsetWidth;
+    
+            const indicadorActivo = contenedor.querySelector('.indicadores .activo');
+            if (indicadorActivo.nextSibling) {
+              indicadorActivo.nextSibling.classList.add('activo');
+              indicadorActivo.classList.remove('activo');
+            }
+          });
+    
+          flechaIzquierda.addEventListener('click', () => {
+            fila.scrollLeft -= fila.offsetWidth;
+    
+            const indicadorActivo = contenedor.querySelector('.indicadores .activo');
+            if (indicadorActivo.previousSibling) {
+              indicadorActivo.previousSibling.classList.add('activo');
+              indicadorActivo.classList.remove('activo');
+            }
+          });
+    
+          peliculas.forEach((pelicula) => {
+            pelicula.addEventListener('mouseenter', (e) => {
+              const elemento = e.currentTarget;
+              setTimeout(() => {
+                peliculas.forEach((pelicula) => pelicula.classList.remove('hover'));
+                elemento.classList.add('hover');
+              }, 100);
+            });
+          });
+    
+          fila.addEventListener('mouseleave', () => {
+            peliculas.forEach((pelicula) => pelicula.classList.remove('hover'));
+          });
+        });
+      </script>
+{% endblock %}

@@ -44,58 +44,161 @@ ul{
 body{
     background: linear-gradient(194deg, rgba(23,16,33,1) 0%, rgba(19,21,22,1) 100%);
     background-attachment: fixed;
+    overflow-x: hidden;  
 }
 
-.header{
-    z-index: 10;
-    width: 100%;
-    position: absolute;
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
+    
+.nav {
+    z-index: 5;
     top: 0;
+    left: 0;
+    width: 100%;
+    padding: 15px 200px;
+    background: linear-gradient(194deg, rgba(2,67,94,0.23573179271708689) 0%, rgba(32,32,32,1) 100%);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
-  
-.navbar-brand{color: white!important;}
-.nav-link{color: white!important;}
+.nav,
+.nav .nav-links {
+  display: flex;
+  align-items: center;
+  padding-top: 13px;
+}
+.nav {
+  justify-content: space-between;
+  position: relative;
+}
+.nav a {
+  color: #fff;
+  text-decoration: none;
+}
+.nav .logo {
+  font-size: 22px;
+  font-weight: 500;
+  color: white;
+  text-decoration: none;
+  padding-left: 20px;
+  margin-left: 10px; 
+}
+.nav .nav-links {
+  column-gap: 20px;
+  list-style: none;
+}
+.nav .nav-links a {
+  transition: all 0.2s linear;
+}
+.nav.openSearch .nav-links a {
+  opacity: 0;
+  pointer-events: none;
+}
+.nav .search-icon {
+  color: #fff;
+  font-size: 20px;
+  cursor: pointer;
+}
+.nav .search-box {
+  position: absolute;
+  right: 250px;
+  height: 45px;
+  max-width: 555px;
+  width: 100%;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.2s linear;
+}
+.nav.openSearch .search-box {
+  opacity: 1;
+  pointer-events: auto;
+}
+.search-box .search-icon {
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  left: 15px;
+  color: #4a98f7;
+  transform: translateY(-50%);
+}
+.search-box input {
+  height: 100%;
+  width: 100%;
+  border: none;
+  outline: none;
+  border-radius: 6px;
+  background-color: #fff;
+  padding: 0 15px 0 45px;
+}
+.nav .navOpenBtn,
+.nav .navCloseBtn {
+  display: none;
+}
 
-.buscador{
-    display: flex;
-    align-items: center;
-    justify-content: left;
-    margin-left: 1.8% !important;
+/* responsive */
+@media screen and (max-width: 1160px) {
+  .nav {
+    padding: 15px 100px;
+  }
+  .nav .search-box {
+    right: 150px;
+  }
 }
-
-.formulario{
-    padding-left: 6px;
-    background-color: #fff;
-    width: 600px;
-    height: 45px;
-    display: flex;
+@media screen and (max-width: 950px) {
+  .nav {
+    padding: 15px 50px;
+  }
+  .nav .search-box {
+    right: 100px;
+    max-width: 400px;
+  }
 }
-.formulario input{
-    flex: 1;
-    background-color: #fff;
-    border: none;
-    outline: none;
-    color: black;
-}
-.formulario button{
-    background: tomato;
-    padding: 10px 50px;
-    width: 150px;
-    height: 46px;
-    border: none;
-    outline: none;
+@media screen and (max-width: 768px) {
+  .nav .navOpenBtn,
+  .nav .navCloseBtn {
+    display: block;
+  }
+  .nav {
+    padding: 15px 20px;
+  }
+  .nav .nav-links {
+    position: fixed;
+    top: 0;
+    left: -100%;
+    height: 100%;
+    max-width: 280px;
+    width: 100%;
+    padding-top: 100px;
+    row-gap: 30px;
+    flex-direction: column;
+    background-color: #11101d;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.4s ease;
+    z-index: 100;
+  }
+  .nav.openNav .nav-links {
+    left: 0;
+  }
+  .nav .navOpenBtn {
     color: #fff;
-    letter-spacing: 1px;
+    font-size: 20px;
     cursor: pointer;
+  }
+  .nav .navCloseBtn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    color: #fff;
+    font-size: 20px;
+    cursor: pointer;
+  }
+  .nav .search-box {
+    top: calc(100% + 10px);
+    max-width: calc(100% - 20px);
+    right: 50%;
+    transform: translateX(50%);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
 }
 
-.placeholder{
-    color:black;
-}
-
-.navbar-brand {
-    font-size: 30px!important; /* Ajusta el tamaño del texto según tus preferencias */
-}
 
 .card{
     width: 350px;
@@ -254,7 +357,7 @@ body{
 }
 
 .peliculas-recomendadas .contenedor-carousel .carousel .pelicula {
-	min-width: 17%;
+	min-width: 20%;
 	transition: .4s ease all;
 	box-shadow: 5px 5px 10px rgba(0,0,0, .3);
 }
@@ -266,8 +369,9 @@ body{
 
 .peliculas-recomendadas .contenedor-carousel .carousel .pelicula img {
 	width: 100%;
-    max-height: 500px;
-    min-height: 500px;
+    max-height: 230px;
+    min-height: 230px;
+    min-width: 400px;
 	vertical-align: top;
     border-radius: 20px;
 }
@@ -312,6 +416,8 @@ body{
 			display: none;
 		}
 	}
+
+    /* TARJETAS */ 
 
     .tarjeta{
         flex-direction: column;
@@ -450,20 +556,199 @@ body{
 }
 
 /* ----------------- DETALLES DE LA PELICULA -------------- */
-.pelicula-resenia {
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    color: white;
+#fila-pelicula {
+    background: linear-gradient(194deg, rgba(2,67,94,0.23573179271708689) 0%, rgba(32,32,32,1) 100%);
 }
 
-.mono-criticon {
-    max-width: 1500px;
-    height: 800px;
-    z-index: 0;
-    margin-left: 935px;
-    pointer-events: none;
+
+.pelicula-resenia {
+    display: block;
+    justify-content: left;
+    align-items: left;
+    text-align: left;
+    color: white;
+    padding-right: 20px;
+    
 }
+.pelicula-resenia img {
+    max-width: 100%; 
+    height: auto; 
+    display: block; 
+
+}
+.contenedor-resumen-pelicula{
+    max-height: 220px;
+    overflow-y:visible;
+    scrollbar-width: thin;
+    scrollbar-color: #8f8f8f #222222;
+    overflow-x: hidden;
+}
+.contenedor-resumen-pelicula::-webkit-scrollbar {
+    width: 12px;
+}
+
+.contenedor-resumen-pelicula::-webkit-scrollbar-thumb {
+    background-color: #8f8f8f;
+    border-radius: 6px;
+}
+
+.contenedor-resumen-pelicula::-webkit-scrollbar-thumb:hover {
+    background-color: #a0a0a0;
+}
+
+.contenedor-resumen-pelicula::-webkit-scrollbar-track {
+    background-color: #222222;
+}
+
+.contenedor-resumen-pelicula::-webkit-scrollbar-track:hover {
+    background-color: #202020;
+}  
+
+.container-banana-puntaje {
+    display: flex;
+    align-items: center;
+}
+
+.estrellas {
+    display: flex;
+    padding-left: 10px;
+}
+
+.estrella-container {
+    margin-right: 15px; /* Ajusta el valor según el espacio deseado */
+    
+}
+.estrella-container a{
+    font-size: 20px;
+}
+.container-banana-puntaje h2{
+    padding-top: 3px;
+}
+
+/* ----------------- ACTORES --------------------------- */
+.container-reparto{
+    margin-top: 4%;
+}
+
+.titulo-reparto h1{
+    color: white;
+    border-bottom: 1px solid #f8346f;;
+    font-size: 35px;
+}
+.card-actor {
+    text-align: center;
+    overflow:  hidden;
+  }
+  
+  .image-wrapper {
+    position: relative;
+    height: 435px; /* Ajusta la altura según tus necesidades */
+  }
+  
+  .image-wrapper::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, #202020 20%, #222222);
+    z-index: -1;
+  }
+  
+  .image-wrapper img {
+    max-width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ajusta la imagen al tamaño del contenedor sin perder proporción */
+  }
+  
+  .actor-name {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background: linear-gradient(90deg, #202020 20%, #222222);
+    color: white;
+    border-bottom-left-radius: 13px;
+    border-bottom-right-radius: 13px;
+    padding-top: 10px;
+  }
+  
+  .actor-name h2 {
+    font-size: 25px;
+  }
+  
+  .card-actor:hover {
+    transform: scale(1.1);
+    transform-origin: center;
+    transition: ease-in-out 0.5s;
+  }
+  .hidden-actor {
+    display: none;
+}
+.reparto-slider {
+    position: relative;
+}
+
+.reparto-carousel {
+    display: flex;
+    overflow-x: auto;
+    overflow-y: none;
+    scroll-behavior: smooth;
+    padding-bottom: 30px;
+}
+
+.col-md-2 {
+    flex: 0 0 16.66667%;
+    max-width: 16.66667%;
+    padding-right: 15px;
+    padding-left: 15px;
+    position: relative;
+}
+
+.actor-name {
+    text-align: center;
+    background: linear-gradient(90deg, #202020 20%, #222222);
+    color: white;
+    border-bottom-left-radius: 13px;
+    border-bottom-right-radius: 13px;
+    padding-top: 10px;
+}
+
+.actor-name h2 {
+    font-size: 25px;
+}
+
+.reparto-carousel::-webkit-scrollbar {
+    width: 12px;
+}
+
+.reparto-carousel::-webkit-scrollbar-thumb {
+    background-color: #8f8f8f;
+    border-radius: 6px;
+}
+
+.reparto-carousel::-webkit-scrollbar-thumb:hover {
+    background-color: #a0a0a0;
+}
+
+.reparto-carousel::-webkit-scrollbar-track {
+    background-color: #222222;
+}
+
+.reparto-carousel::-webkit-scrollbar-track:hover {
+    background-color: #202020;
+}  
+
+.card-director{
+    padding-top: 30px;
+}
+.card-director img:hover {
+    transform: scale(1.1) translateY(-20px) translateX(5px);
+    transition: ease-in-out 0.5s;
+}
+  
+/* ----------------- FIN ACTORES --------------------------- */
 
 .detalles-pelicula {
     overflow-x: hidden;
@@ -474,6 +759,12 @@ body{
     display: flex;
 }
 
+.mono-criticon {
+    max-width: 1500px;
+    height: 800px;
+    z-index: 0;
+    margin-left: 935px;
+}
 .resumen-pelicula h1 {
     position: relative;
     line-height: 1;
@@ -484,15 +775,15 @@ body{
     font-size: 31px;
     position: absolute;
     top: 100px;
-    left: 100px;
     background: linear-gradient(90deg, #202020 20%, #222222);
     color: #8f8f8f;
-    height: 450px;
+    height: 530px;
     width: 1400px;
     display: block;
     justify-items: first baseline;
     overflow: auto;
     border-radius: 12px;
+    z-index: 2;
 }
 
 .contenedor-resumen p{
@@ -522,14 +813,17 @@ body{
 }
 
 /* ------- CRITICAS Y FORM -------- */
+
+
 .critica{
     color: white;
     justify-content: left;
     align-items: left;
     background: linear-gradient(90deg, #202020 20%, #222222);
     border-radius: 20px;
-
     max-height: 420px;
+}
+.critica-scroll{
     overflow-y: auto;
     scrollbar-width: thin;
     scrollbar-color: #8f8f8f #222222;
@@ -574,7 +868,7 @@ body{
 .ver-mas,
 .mostrar-menos {
     display: none;
-    color:gray;
+    color:#f8346f;;
     margin-left: 13px;
     margin-top: -10px; /* Ajusta este valor según tu preferencia */
 }
@@ -618,11 +912,14 @@ body{
   background-color: #202020;
 }
   
+.nombre-director{
+    text-align: left;
+}
 /* -------------- FORMS --------------*/
 .container-form .form-group {
     margin-bottom: 20px;
 }
-
+  
 .critica-form{
     color: white;
     justify-content: left;
@@ -673,3 +970,15 @@ body{
     border: none;
     opacity: 1;
 }
+
+
+
+/* ---------Persona.html-----------*/
+.persona-detalles p, .persona-detalles h1{
+    color:#FAFAFA;
+}
+.peliculas-que-actua{
+    color:#FAFAFA;
+}
+
+/* ---------Fin Persona.html-----------*/

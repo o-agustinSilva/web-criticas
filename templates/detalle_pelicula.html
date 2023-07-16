@@ -3,14 +3,46 @@
 {%  load static %}
 
 {% block content %}
+
+    {% include 'header.html' %}
+
     <div class="container-fluid detalles-pelicula">
-        <div class="row">
-            <div class="col-md-12 pelicula-resenia">
-                    <h1>{{ pelicula.nombre }}</h1>
-                    <p>{{ pelicula.anio_pelicula }}</p>
-                    <img src="{{ pelicula.foto.url }}" alt="Imagen de la película">
+        <div id="fila-pelicula" class="row">
+            <div class="col-md-7 pelicula-resenia">
+                <img src="{{ pelicula.foto.url }}" alt="Imagen de la película" style="width: 1200px; height: 630px;">
             </div>
+            <div class="col-md-5 pelicula-resenia">
+
+                <h1>{{ pelicula.nombre }} ({{ pelicula.anio_pelicula }})</h1>
+                <div class="contenedor-resumen-pelicula">
+                    <p>{{ pelicula.resumen|linebreaksbr }}</p>
+                </div>
+
+                <div class="card-director">
+                    <a href="{% url 'DirectorView' id_director=director.id %}" onclick="event.stopPropagation();">
+                        <img src="{{ director.foto.url }}" alt="Imagen del director" style="width: 130px; height: 190px;">
+                    </a>
+                    <p class="nombre-director">Director: {{director.nombre}}</p>
+                </div>
+
+                <div class="container-banana-puntaje">
+                    <h2>Puntaje: </h2>
+                    <div class="estrellas">
+                        {% for valor in puntaje %}
+                            <div class="estrella-container">
+                                {% if valor == 'a' %}
+                                    <a href="#"><i class="fas fa-star" style="color: yellow;"></i></a>
+                                {% else %}
+                                    <a href="#"><i class="far fa-star" style="color: grey;"></i></a>
+                                {% endif %}
+                            </div>
+                        {% endfor %}      
+                    </div>      
+                </div>
+            </div>            
         </div>
+
+        {% include 'actores.html' %}   
 
         <div class="row d-flex">
             <div class="resumen-pelicula">
@@ -29,60 +61,27 @@
         <div class="row">
 
             <div class="col-6 container-criticas">
-                <div class="critica">
+                <div class="critica critica-scroll">
                     <div class="row">
                         <div class="col-md-12">
                             <h1 class="titulo-comentarios">El veredicto de los chimpancés</h1>
                         </div>
-                        <div class="row container-critica-usuario">
-                            <div class="col-md-1 foto-usuario">
-                                <img src="https://img.freepik.com/vector-premium/chimpance-bebe-dibujos-animados-sosteniendo-platano_29190-4734.jpg" alt="user_pic">
+                        {% for critica in criticas %}
+                            <div class="row container-critica-usuario">
+                                <div class="col-md-1 foto-usuario">
+                                    <img src="https://img.freepik.com/vector-premium/chimpance-bebe-dibujos-animados-sosteniendo-platano_29190-4734.jpg" alt="user_pic">
+                                </div>
+                                <div class="col-md-11 contenido-usuario">                         
+                                    <h1>{{ critica.nombre }}</h1>
+                                    <p class="comment">{{ critica.critica }}</p>
+                                    <a href="#" class="ver-mas" onclick="expandirComentario(event)">Ver más</a>
+                                    <a href="#" class="mostrar-menos" onclick="contraerComentario(event)">Mostrar menos</a>                  
+                                </div>
                             </div>
-                            <div class="col-md-11 contenido-usuario">
-                                <h1>DIOS CHIMPANCÉ</h1>
-                                <p class="comment">A chimpancé gustar, chimpancé dar 5 bananas</p>
-                                <a href="#" class="ver-mas" onclick="expandirComentario(event)">Ver más</a>
-                                <a href="#" class="mostrar-menos" onclick="contraerComentario(event)">Mostrar menos</a>
-                            </div>
-                        </div>
-                        <div class="row container-critica-usuario">
-                            <div class="col-md-1 foto-usuario">
-                                <img src="https://img.freepik.com/vector-premium/chimpance-bebe-dibujos-animados-sosteniendo-platano_29190-4734.jpg" alt="user_pic">
-                            </div>
-                            <div class="col-md-11 contenido-usuario">
-                                <h1>SEMIDIOS CHIMPANCÉ</h1>
-                                <p class="comment">Sobrevalorada. Le doy 1 banana y estoy siendo bueno.</br>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Accusantium enim nam quaerat, eaque maiores necessitatibus dolorem perferendis inventore eius, ratione temporibus natus voluptatem ipsa iusto magni ad, unde ea dolore?</p>
-                                <a href="#" class="ver-mas" onclick="expandirComentario(event)">Ver más</a>
-                                <a href="#" class="mostrar-menos" onclick="contraerComentario(event)">Mostrar menos</a>
-                            </div>
-                        </div>
-                        <div class="row container-critica-usuario">
-                            <div class="col-md-1 foto-usuario">
-                                <img src="https://img.freepik.com/vector-premium/chimpance-bebe-dibujos-animados-sosteniendo-platano_29190-4734.jpg" alt="user_pic">
-                            </div>
-                            <div class="col-md-11 contenido-usuario">
-                                <h1>SEMIDIOS CHIMPANCÉ</h1>
-                                <p class="comment">Sobrevalorada. Le doy 1 banana y estoy siendo bueno.</br>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Accusantium enim nam quaerat, eaque maiores necessitatibus dolorem perferendis inventore eius, ratione temporibus natus voluptatem ipsa iusto magni ad, unde ea dolore?</p>
-                                <a href="#" class="ver-mas" onclick="expandirComentario(event)">Ver más</a>
-                                <a href="#" class="mostrar-menos" onclick="contraerComentario(event)">Mostrar menos</a>
-                            </div>
-                        </div>
-                        <div class="row container-critica-usuario">
-                            <div class="col-md-1 foto-usuario">
-                                <img src="https://img.freepik.com/vector-premium/chimpance-bebe-dibujos-animados-sosteniendo-platano_29190-4734.jpg" alt="user_pic">
-                            </div>
-                            <div class="col-md-11 contenido-usuario">
-                                <h1>SEMIDIOS CHIMPANCÉ</h1>
-                                <p class="comment">Sobrevalorada. Le doy 1 banana y estoy siendo bueno.</br>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Accusantium enim nam quaerat, eaque maiores necessitatibus dolorem perferendis inventore eius, ratione temporibus natus voluptatem ipsa iusto magni ad, unde ea dolore?</p>
-                                <a href="#" class="ver-mas" onclick="expandirComentario(event)">Ver más</a>
-                                <a href="#" class="mostrar-menos" onclick="contraerComentario(event)">Mostrar menos</a>
-                            </div>
-                        </div>
+                        {% endfor %}
                     </div>
                 </div>
             </div>
-            
-            
 
             <div class="col-6 critica">
                 {% include 'cargar_critica.html' %}
@@ -131,9 +130,6 @@
               }
             }
           });
-          
-          
-          
     </script>
 {% endblock %}
 

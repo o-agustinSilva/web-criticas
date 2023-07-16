@@ -1,0 +1,27 @@
+{% extends 'master.html' %}
+
+{%  load static %}
+
+{% block content %}
+
+<div class="container-fluid container-reparto">
+    <div class="row titulo-reparto">
+        <h1>Reparto</h1>
+    </div>
+    <div class="row reparto-slider">
+        <div class="reparto-carousel">
+            {% for actor in actores %}
+                <div class="col-md-2 card-actor">
+                    <div class="image-wrapper">
+                        <a href="{% url 'ActorView' id_actor=actor.id %}"><img src="{{ actor.foto.url }}" alt="Imagen del actor"></a>
+                    </div>
+                    <div class="actor-name">
+                        <h2>{{ actor.nombre }}</h2>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}
+
