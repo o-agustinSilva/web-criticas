@@ -5,7 +5,8 @@ from django.views.generic import TemplateView
 from pagina_web.models import *
 from django.shortcuts import render, redirect
 from pagina_web.forms import *
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render
+from django.db.models import Q
 
 # Create your views here.
 class Inicio(TemplateView):
@@ -14,6 +15,31 @@ class Inicio(TemplateView):
     def get_context_data(self, **kwargs: Any) -> Dict[str, Any]:
       context = super().get_context_data(**kwargs)
       return context
+    
+    def get(self, request, *args, **kwargs):
+        peliculas = Pelicula.objects.all()
+
+        context = {
+            'peliculas': peliculas
+        }
+
+        # Peliculas del primer carousel (El señor de los anillos)
+        peliculas_recomendadas_uno = Pelicula.objects.filter(Q(nombre__icontains='el señor de los anillos') | Q(nombre__icontains='el hobbit'))
+        context['peliculas_primer_carousel'] = peliculas_recomendadas_uno
+
+        # Peliculas del segundo carousel (Star Wars)
+        peliculas_recomendadas_dos = Pelicula.objects.filter(Q(nombre__icontains='star wars'))
+        context['peliculas_segundo_carousel'] = peliculas_recomendadas_dos
+
+        # Peliculas del tercer carousel (Harry Potter)
+        peliculas_recomendadas_tres = Pelicula.objects.filter(Q(nombre__icontains='harry potter'))
+        context['peliculas_tercer_carousel'] = peliculas_recomendadas_tres
+
+        # Obtener las 6 películas con mejor puntaje
+        peliculas_mejor_puntaje = Pelicula.objects.order_by('-puntaje')[:6]
+        context['peliculas_mejor_puntaje'] = peliculas_mejor_puntaje
+        
+        return render(request, self.template_name, context)
 
 class Detalle_Pelicula(TemplateView):
     template_name = 'detalle_pelicula.html'
@@ -53,8 +79,12 @@ class Detalle_Pelicula(TemplateView):
         criticas = Critica.objects.filter(pelicula=pelicula, estado="APROBADO")
         context['criticas'] = criticas
 
+        # Inicializar el formulario de crítica
+        form = CriticaForm()
+        context['form'] = form
+
         return context
-    
+
     def post(self, request, *args, **kwargs):
         id_pelicula = self.kwargs['id']
 
@@ -68,7 +98,6 @@ class Detalle_Pelicula(TemplateView):
             context = self.get_context_data(**kwargs)
             context['form'] = form
             return self.render_to_response(context)
-
 
 class Detalle_Actor(TemplateView):
     template_name = 'detalle-actor.html'
@@ -116,7 +145,6 @@ class Detalle_Director(TemplateView):
 
         return context
     
-
 # Función para cargar una pelicula   
 def cargar_pelicula(request):
     if request.method == 'POST':

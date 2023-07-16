@@ -9,7 +9,6 @@ class PeliculaForm(forms.ModelForm):
 
 
 class CriticaForm(forms.ModelForm):
-
     puntaje = forms.IntegerField(
         validators=[MinValueValidator(1), MaxValueValidator(5)]
     )
@@ -17,4 +16,12 @@ class CriticaForm(forms.ModelForm):
     class Meta:
         model = Critica
         fields = ['critica', 'correo', 'nombre', 'puntaje']
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['nombre'].initial = ''
+        self.fields['correo'].initial = ''
+        self.fields['critica'].initial = ''
+        self.fields['puntaje'].initial = ''
+
 

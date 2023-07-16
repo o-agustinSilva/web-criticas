@@ -12,32 +12,32 @@
 
         <div class="row">
             <div class="col-md-6 form-group">
-                <label for="label_nombre">Nombre:</label>
-                <input type="text" id="label_nombre" name="{{ form.nombre.name }}" placeholder="Nombre" value="{{ form.nombre.value }}" class="form-control">
+                <label for="{{ form.nombre.id_for_label }}">Nombre:</label>
+                <input type="text" id="{{ form.nombre.id_for_label }}" name="{{ form.nombre.name }}" placeholder="Nombre" value="{{ form.nombre.value }}" class="form-control">
             </div>
 
             <div class="col-md-6 form-group">
-                <label for="label_correo">Correo:</label>
-                <input type="text" id="label_correo" name="{{ form.correo.name }}" placeholder="Correo electrónico" value="{{ form.correo.value }}" class="form-control">
+                <label for="{{ form.correo.id_for_label }}">Correo:</label>
+                <input type="text" id="{{ form.correo.id_for_label }}" name="{{ form.correo.name }}" placeholder="Correo electrónico" value="{{ form.correo.value }}" class="form-control">
             </div>
         </div>
         
         <div class="col-12 form-group">
-            <label for="label_critica">Crítica:</label>
-            <textarea id="label_critica" name="{{ form.critica.name }}" placeholder="Escribe tu crítica" class="form-control">{{ form.critica.value }}</textarea>
+            <label for="{{ form.critica.id_for_label }}">Crítica:</label>
+            <textarea id="{{ form.critica.id_for_label }}" name="{{ form.critica.name }}" placeholder="Escribe tu crítica" class="form-control">{{ form.critica.value }}</textarea>
         </div>
         
-        <!--  Agrega los campos ocultos "pelicula" y "estado" antes de la sección de botones -->
+        <!-- Agrega los campos ocultos "pelicula" y "estado" antes de la sección de botones -->
         <input type="hidden" name="pelicula" value="{{ pelicula.id }}">
         <input type="hidden" name="estado" value="PENDIENTE">
 
         <div class="row">
             <div class="col-md-6 form-group">
-                <label for="label_puntaje">Puntaje:</label>
-                <input type="text" id="label_puntaje" name="{{ form.puntaje.name }}" placeholder="Puntaje" value="{{ form.puntaje.value }}" class="form-control">
+                <label for="{{ form.puntaje.id_for_label }}">Puntaje:</label>
+                <input type="text" id="{{ form.puntaje.id_for_label }}" name="{{ form.puntaje.name }}" placeholder="Puntaje" value="{{ form.puntaje.value }}" class="form-control">
             </div>
             <div class="col-md-6 form-group container-boton">
-                <button type="submit" class="boton-form">Publicar reseña</button>
+                <button type="submit" class="boton-form btn btn-primary">Publicar reseña</button>
             </div>
         </div>
         

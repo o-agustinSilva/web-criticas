@@ -11,6 +11,7 @@
 </head>
 <body>
     {% block content %}
+
     <div class="peliculas-recomendadas contenedor">
       <H1 class="titulo" style="color:white;">SAGAS CINEMATOGRÁFICAS ACLAMADAS POR LA CRÍTICA</H1>
       <div class="contenedor-titulo-controles">
@@ -24,24 +25,11 @@
 
         <div class="contenedor-carousel">
           <div class="carousel">
-            <div class="pelicula">
-              <a href="#"><img src="https://m.media-amazon.com/images/I/81EBp0vOZZL._AC_SL1329_.jpg" alt=""></a>
-            </div>
-            <div class="pelicula">
-              <a href="#"><img src="https://m.media-amazon.com/images/M/MV5BZGMxZTdjZmYtMmE2Ni00ZTdkLWI5NTgtNjlmMjBiNzU2MmI5XkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_.jpg" alt=""></a>
-            </div>
-            <div class="pelicula">
-              <a href="#"><img src="https://m.media-amazon.com/images/M/MV5BNzA5ZDNlZWMtM2NhNS00NDJjLTk4NDItYTRmY2EwMWZlMTY3XkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_FMjpg_UX1000_.jpg" alt=""></a>
-            </div>
-            <div class="pelicula">
-              <a href="#"><img src="https://i.pinimg.com/originals/46/1f/17/461f1790130dd8a619c65cf8ebac949c.jpg" alt=""></a>
-            </div>
-            <div class="pelicula">
-              <a href="#"><img src="https://m.media-amazon.com/images/I/91H3DrlqWFS._RI_.jpg" alt=""></a>
-            </div>
-            <div class="pelicula">
-              <a href="#"><img src="https://cdn11.bigcommerce.com/s-ydriczk/images/stencil/1280x1280/products/87203/88303/the_hobbit_The_Battle_Of_The_Five_Armies_Poster_Final_style_buy_original_movie_posters_at_starstills__17587.1414147744.jpg?c=2" alt=""></a>
-            </div>
+            {% for pelicula in peliculas_primer_carousel %}
+              <div class="pelicula">
+                <a href="{% url 'PeliculaView' id=pelicula.id%}"><img src=" {{ pelicula.foto.url }} " alt=""></a>
+              </div>
+            {% endfor %}
           </div>
         </div>
 
@@ -58,33 +46,11 @@
 
         <div class="contenedor-carousel">
           <div class="carousel">
-            <div class="pelicula">
-              <a href="#"><img src="https://m.media-amazon.com/images/M/MV5BYTRhNjcwNWQtMGJmMi00NmQyLWE2YzItODVmMTdjNWI0ZDA2XkEyXkFqcGdeQXVyNTAyODkwOQ@@._V1_.jpg" alt=""></a>
-            </div>
-            <div class="pelicula">
-              <a href="#"><img src="https://files.filmaps.com/films/2f767fc3-5e9f-4a08-ab3e-16b2575836f3/posters/a7aec5a8-65ce-4383-9cc2-b206d45118a8.jpg" alt=""></a>
-            </div>
-            <div class="pelicula">
-              <a href="#"><img src="https://static.wikia.nocookie.net/esstarwars/images/f/fa/Ep3_poster.jpg/revision/latest?cb=20060407220934" alt=""></a>
-            </div>
-            <div class="pelicula">
-              <a href="#"><img src="https://static.wikia.nocookie.net/doblaje/images/e/ec/Star_Wars_La_Guerra_de_las_Galaxias_poster.jpg/revision/latest?cb=20180224221421&path-prefix=es" alt=""></a>
-            </div>
-            <div class="pelicula">
-              <a href="#"><img src="https://static.wikia.nocookie.net/esstarwars/images/d/db/EpV.jpg/revision/latest?cb=20060424015559" alt=""></a>
-            </div>
-            <div class="pelicula">
-              <a href="#"><img src="https://static.wikia.nocookie.net/esstarwars/images/b/b2/ReturnOfTheJediPoster1983.jpg/revision/latest?cb=20200623214315" alt=""></a>
-            </div>
-            <div class="pelicula">
-              <a href="#"><img src="https://static.wikia.nocookie.net/esstarwars/images/2/2e/El_Despertar_de_la_Fuerza_Poster.jpg/revision/latest?cb=20180412014438" alt=""></a>
-            </div>
-            <div class="pelicula">
-              <a href="#"><img src="https://static.wikia.nocookie.net/esstarwars/images/9/9a/Los%C3%9AltimosJediPosterFinal.jpg/revision/latest?cb=20200210102917" alt=""></a>
-            </div>
-            <div class="pelicula">
-              <a href="#"><img src="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/star-wars-1577434967.jpg" alt=""></a>
-            </div>
+            {% for pelicula in peliculas_segundo_carousel %}
+              <div class="pelicula">
+                <a href="{% url 'PeliculaView' id=pelicula.id%}"><img src=" {{ pelicula.foto.url }} " alt=""></a>
+              </div>
+            {% endfor %}
           </div>
         </div>
 
@@ -98,65 +64,13 @@
       </div>
       <div class="contenedor-principal">
         <button role="button" class="flecha-izquierda"><i class="fas fa-angle-left"></i></button>
-
-
           <div class="contenedor-carousel">
             <div class="carousel">
-
+              {% for pelicula in peliculas_tercer_carousel %}
                 <div class="pelicula">
-                  <a href="#"><img src="https://es.web.img2.acsta.net/pictures/14/04/30/11/55/592219.jpg" alt=""></a>
+                  <a href="{% url 'PeliculaView' id=pelicula.id%}"><img src=" {{ pelicula.foto.url }} " alt=""></a>
                 </div>
-              
-
-                <div class="pelicula">
-                  <a href="#"><img src="https://pics.filmaffinity.com/harry_potter_and_the_chamber_of_secrets_harry_potter_2-420538488-large.jpg" alt=""></a>
-                </div>
-              
-
-                <div class="pelicula">
-                  <a href="#"><img src="https://es.web.img2.acsta.net/pictures/14/04/30/11/36/185120.jpg" alt=""></a>
-                </div>
-              
-
-                <div class="pelicula">
-                  <a href="#"><img src="https://static.wikia.nocookie.net/esharrypotter/images/2/25/Tt0330373_largeCover.jpg/revision/latest?cb=20180916214447" alt=""></a>
-                </div>
-              
-
-                <div class="pelicula">
-                  <a href="#"><img src="https://i.blogs.es/c076a3/harry_potter_and_the_order_of_the_phoenix_ver10/450_1000.jpg" alt=""></a>
-                </div>
-              
-
-                <div class="pelicula">
-                  <a href="#"><img src="https://www.themoviedb.org/t/p/original/z7uo9zmQdQwU5ZJHFpv2Upl30i1.jpg" alt=""></a>
-                </div>
-              
-
-                <div class="pelicula">
-                  <a href="#"><img src="https://static.wikia.nocookie.net/doblaje/images/e/e1/Harry_Potter_Y_Las_Reliquias_de_la_muerte_parte_1_poster.jpg/revision/latest/thumbnail/width/360/height/450?cb=20220911204423&path-prefix=es" alt=""></a>
-                </div>
-              
-
-                <div class="pelicula">
-                  <a href="#"><img src="https://i.pinimg.com/originals/f1/ab/2b/f1ab2b0dfbfa22504bf3b91b0d60b221.jpg" alt=""></a>
-                </div>
-              
-
-                <div class="pelicula">
-                  <a href="#"><img src="https://www.themoviedb.org/t/p/original/pLgSLx9dn2YYbwVk8p0F28KIU8C.jpg" alt=""></a>
-                </div>
-              
-
-                <div class="pelicula">
-                  <a href="#"><img src="https://static.wikia.nocookie.net/esharrypotter/images/7/7b/Animales_fant%C3%A1sticos_Los_cr%C3%ADmenes_de_Grindelwald.jpg/revision/latest?cb=20181116085406" alt=""></a>
-                </div>
-              
-
-                <div class="pelicula">
-                  <a href="#"><img src="https://es.web.img3.acsta.net/pictures/22/03/16/12/44/0138242.jpg" alt=""></a>
-                </div>
-              
+              {% endfor %}
             </div>
           </div>
 
