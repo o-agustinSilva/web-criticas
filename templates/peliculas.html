@@ -1,0 +1,51 @@
+{% extends 'master.html'%}
+{% load static %}
+
+{% block content %}
+    {% include 'header.html' %}
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12 header-peliculas">
+                <h1>Cátalogo de películas</h1>
+                <form id="orden-form" action="{% url 'PeliculasView' %}" method="GET">
+                    <select id="orden" name="orden" onchange="ejecutarCodigo(this)">
+                        <option value="" selected disabled>Ordenar por</option>
+                        <option value="anio_pelicula" {% if orden_actual == 'anio_pelicula' %}selected{% endif %}>Año - Menor a mayor</option>
+                        <option value="-anio_pelicula" {% if orden_actual == '-anio_pelicula' %}selected{% endif %}>Año - Mayor a menor</option>
+                        <option value="puntaje" {% if orden_actual == 'puntaje' %}selected{% endif %}>Puntaje - Menor a mayor</option>
+                        <option value="-puntaje" {% if orden_actual == '-puntaje' %}selected{% endif %}>Puntaje - Mayor a menor</option>
+                        <option value="nombre" {% if orden_actual == 'nombre' %}selected{% endif %}>Nombre</option>
+                    </select>
+                    <input type="hidden" name="orden_actual" value="{{ orden_actual }}">
+                    <input type="hidden" name="categoria" value="{{ categoria_actual }}">
+                </form>
+            </div>
+            
+        </div>
+        
+        <div class="row listado-peliculas">
+            {% for pelicula in peliculas %}
+                <div class="col-md-4 card-pelicula">
+                    <div class="card-pelicula-cover">
+                        <a href="{% url 'PeliculaView' id=pelicula.id %}">
+                            <img class="card-pelicula-img" src="{{ pelicula.foto.url }}" alt="Imagen de la película">
+                            <div class="card-pelicula-overlay"></div>
+                            <div class="pelicula-name">
+                                <h2>{{ pelicula.nombre }}</h2>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+<script>   
+    function ejecutarCodigo(selectElement) {
+        var selectedOption = selectElement.value;
+        var form = document.getElementById('orden-form');
+        form.submit();
+    }
+</script>
+{% endblock %}

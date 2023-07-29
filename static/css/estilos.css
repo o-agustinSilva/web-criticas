@@ -69,10 +69,12 @@ body{
   justify-content: space-between;
   position: relative;
 }
+
 .nav a {
   color: #fff;
   text-decoration: none;
 }
+
 .nav .logo {
   font-size: 22px;
   font-weight: 500;
@@ -80,7 +82,17 @@ body{
   text-decoration: none;
   padding-left: 20px;
   margin-left: 10px; 
+  transition: all 0.2s linear;
 }
+
+.nav .logo:hover{
+    color: #f8346f;
+}
+
+.nav .nav-links li:hover a{
+    color: #f8346f;
+}
+
 .nav .nav-links {
   column-gap: 20px;
   list-style: none;
@@ -96,17 +108,21 @@ body{
   color: #fff;
   font-size: 20px;
   cursor: pointer;
-}
-.nav .search-box {
-  position: absolute;
-  right: 250px;
-  height: 45px;
-  max-width: 555px;
-  width: 100%;
-  opacity: 0;
-  pointer-events: none;
   transition: all 0.2s linear;
 }
+.nav .search-icon:hover{
+    color: #f8346f;
+}
+.nav .search-box{
+    position: absolute;
+    right: 250px;
+    height: 45px;
+    max-width: 555px;
+    width: 100%;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.2s linear;
+  }
 .nav.openSearch .search-box {
   opacity: 1;
   pointer-events: auto;
@@ -119,15 +135,25 @@ body{
   color: #4a98f7;
   transform: translateY(-50%);
 }
+.search-box .search-form{
+    height: 100% !important;
+    width: 100% !important;
+    border: none;
+    outline: none;
+    border-radius: 6px;
+    background-color: #fff;
+    padding: 0 15px 0 45px;
+}
+
 .search-box input {
-  height: 100%;
-  width: 100%;
+  height: 100% !important;
+  width: 100% !important;
   border: none;
   outline: none;
   border-radius: 6px;
   background-color: #fff;
-  padding: 0 15px 0 45px;
 }
+
 .nav .navOpenBtn,
 .nav .navCloseBtn {
   display: none;
@@ -427,10 +453,13 @@ body{
     }
     .tarjeta-detalles{
         width: 100px;
-        height: auto;
+        max-height: 480px !important;
+        position: absolute;
     }
     .tarjeta-botones{
         flex-direction: column;
+        position: relative;
+        bottom: 0;
     }
     .tarjeta-imagen{
         width: 230px;
@@ -471,6 +500,7 @@ body{
     justify-content: center;
     align-items: center;
     padding-top: 5%;
+    margin-top: 10%;
 }
 
 .tarjeta-imagen{
@@ -489,9 +519,15 @@ body{
 .tarjeta-detalles{
     padding: 20px;
     background: linear-gradient(90deg, #202020 20%, #222222);
-    width: 360px;
+    width: 350px;
+    height: 480px;
     border-radius: 0px 10px 10px 0px;
 }
+
+.tarjeta-resumen-pelicula {
+    max-height: 300px; /* Establece una altura máxima */
+    overflow-y: auto; /* Agrega desbordamiento vertical */
+  }
 
 .tarjeta-detalles strong{
     color: #e4e4e4;
@@ -556,6 +592,27 @@ body{
     color: #ffffff;
     border: none;
     opacity: 1;
+}
+
+.tarjeta-resumen-pelicula::-webkit-scrollbar {
+    width: 12px;
+  }
+  
+.tarjeta-resumen-pelicula::-webkit-scrollbar-thumb {
+    background-color: #8f8f8f;
+    border-radius: 6px;
+}
+
+.tarjeta-resumen-pelicula::-webkit-scrollbar-thumb:hover {
+    background-color: #a0a0a0;
+}
+
+.tarjeta-resumen-pelicula::-webkit-scrollbar-track {
+    background-color: #222222;
+}
+
+.tarjeta-resumen-pelicula::-webkit-scrollbar-track:hover {
+    background-color: #202020;
 }
 
 /* ----------------- DETALLES DE LA PELICULA -------------- */
@@ -641,6 +698,7 @@ body{
 .card-actor {
     text-align: center;
     overflow:  hidden;
+    padding-bottom: 40px;
   }
   
   .image-wrapper {
@@ -665,18 +723,7 @@ body{
     object-fit: cover; /* Ajusta la imagen al tamaño del contenedor sin perder proporción */
   }
   
-  .actor-name {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    background: linear-gradient(90deg, #202020 20%, #222222);
-    color: white;
-    border-bottom-left-radius: 13px;
-    border-bottom-right-radius: 13px;
-    padding-top: 10px;
-  }
-  
+
   .actor-name h2 {
     font-size: 25px;
   }
@@ -684,7 +731,7 @@ body{
   .card-actor:hover {
     transform: scale(1.1);
     transform-origin: center;
-    transition: ease-in-out 0.5s;
+    transition: transform 0.3s ease-in-out;
   }
   .hidden-actor {
     display: none;
@@ -701,7 +748,7 @@ body{
     padding-bottom: 30px;
 }
 
-.col-md-2 {
+.reparto-carousel .col-md-2 {
     flex: 0 0 16.66667%;
     max-width: 16.66667%;
     padding-right: 15px;
@@ -710,12 +757,13 @@ body{
 }
 
 .actor-name {
+    background: linear-gradient(45deg, rgba(255, 255, 255, 0.089) 0%, rgba(255, 255, 255, 0.048) 50%);
     text-align: center;
-    background: linear-gradient(90deg, #202020 20%, #222222);
     color: white;
     border-bottom-left-radius: 13px;
     border-bottom-right-radius: 13px;
     padding-top: 10px;
+    height: 55px;
 }
 
 .actor-name h2 {
@@ -850,6 +898,14 @@ body{
   padding-top: 5px;
 }
 
+.nombre-y-puntaje{
+    display: flex;
+}
+
+.nombre-y-puntaje a{
+    margin-top: 5px;
+    padding-left: 10px;
+}
 
 .critica img{
     border-radius: 50%;
@@ -985,3 +1041,189 @@ body{
 }
 
 /* ---------Fin Persona.html-----------*/
+
+/* --------- Catalogo de peliculas-----------*/
+.header-peliculas{
+    padding-top: 20px;
+    color: #FAFAFA;
+    justify-content: space-between;
+    display: flex;
+    font-size: 14px;
+    border-bottom: 1px solid #f8346f;
+}
+
+.header-peliculas h1{
+    font-size: 25px;
+    padding-left: 23px;
+}
+
+.listado-pelicula{
+    color: #FAFAFA;
+    display: block;
+    
+}
+
+.card-pelicula{
+    padding-top: 20px;
+    position: relative;
+}
+
+.card-pelicula-cover {
+    position: relative;
+    overflow: hidden;
+    perspective: 800px;
+    transition: transform 0.3s;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.card-pelicula-cover:hover {
+    transform: scale(1.05);
+}
+
+
+.card-pelicula-img {
+
+    display: block;
+    width: 100%;
+    max-height: 400px;
+    min-height: 400px;
+    object-fit: cover;
+    transition: transform 0.3s ease-in-out;
+    padding: 20px;
+}
+
+.card-pelicula-cover:hover .card-pelicula-img {
+    transform: scale(1.1);
+}
+.card-pelicula-cover:hover .pelicula-name{
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.1);
+    transform-origin: center;
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.card-pelicula-overlay {
+    position: absolute;
+    top:0;
+    transform: translate(1%, 1%);
+    width: 90%;
+    height: 90%;
+    background: linear-gradient(45deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.199) 50%);
+    opacity: 0;
+    transition: opacity 0.3s, transform 0.3s ease-in-out;
+    filter: blur(40px);
+    margin-left: 20px;
+    margin-top: 20px;
+}
+
+.card-pelicula-cover:hover .card-pelicula-overlay {
+    opacity: 1;
+    transform: translate(0, 0), scale(1.1);
+    transition: 0.4s ease-in-out;
+}
+
+.pelicula-name {
+    opacity: 0;
+    position: absolute;
+    top: 84%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 95%;
+    height: 23%;
+    color: #FAFAFA;
+    background: rgba(0, 0, 0, 0.747);
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+.pelicula-name h2{
+    font-size: 22px;
+}
+
+/* --------- Fin Catalogo de peliculas-----------*/
+
+/* --------- Catalogo de actores-----------*/
+.header-actores{
+    padding-top: 20px;
+    color: #FAFAFA;
+    justify-content: space-between;
+    display: flex;
+    font-size: 14px;
+    border-bottom: 1px solid #f8346f;
+}
+
+.header-actores h1{
+    font-size: 25px;
+    padding-left: 42px;
+}
+
+.listado-actores{
+    color: #FAFAFA;
+    display: block;
+    scroll-behavior: smooth;
+    padding: 40px;
+}
+
+.listado-actores .col-md-4{
+    flex: 0 0 16.66667%;
+    max-width: 16.66667%;
+    padding-right: 15px;
+    padding-left: 15px;
+    position: relative;
+}
+
+/* --------- Fin Catalogo de actores-----------*/
+
+
+/* --------- Catalogo de directores-----------*/
+.header-directores{
+    padding-top: 20px;
+    color: #FAFAFA;
+    justify-content: space-between;
+    display: flex;
+    font-size: 14px;
+    border-bottom: 1px solid #f8346f;
+}
+
+.header-directores h1{
+    font-size: 25px;
+    padding-left: 42px;
+}
+
+.listado-directores{
+    color: #FAFAFA;
+    display: block;
+    scroll-behavior: smooth;
+    padding: 40px;
+}
+
+.listado-directores .col-md-4{
+    flex: 0 0 16.66667%;
+    max-width: 16.66667%;
+    padding-right: 15px;
+    padding-left: 15px;
+    position: relative;
+}
+
+/* --------- Fin Catalogo de directores-----------*/
+
+.dropdown-genero{
+    width: 150px;
+    color: #FAFAFA;
+    background: none;
+    text-decoration: none;
+    border:none;
+    transition: all 0.2s linear;
+}
+
+.dropdown-genero .dropdown-genero-opcion{
+    color:black;
+}
+
+.nav .nav-links .dropdown-genero:hover{
+    color: #f8346f;
+}

@@ -5,17 +5,33 @@
   <i class="uil uil-bars navOpenBtn"></i>
     <a href="http://127.0.0.1:8000/#" class="logo">Monitos criticones</a>
   <ul class="nav-links">
-    <li><a href="http://127.0.0.1:8000/#">Inicio</a></li>
-    <li><a href="http://127.0.0.1:8000/Pelicula/1/#">Peliculas</a></li>
-    <li><a href="#">Actores</a></li>
-    <li><a href="#">Directores</a></li>
-    <li><a href="#">Contact Us</a></li>
+    <li><a href="http://127.0.0.1:8000/#" id="inicio-tab">Inicio</a></li>
+    <li><a href="http://127.0.0.1:8000/Peliculas/" id="peliculas-tab">Peliculas</a></li>
+    <li><a href="http://127.0.0.1:8000/Actores/" id="actores-tab">Actores</a></li>
+    <li><a href="http://127.0.0.1:8000/Directores/" id="directores-tab">Directores</a></li>    
+    <li><a>
+      <form action="{% url 'PeliculasView' %}" method="GET">
+        <select class="dropdown-genero" name="categoria" onchange="this.form.submit()">
+            <option class="dropdown-genero-opcion" value="" disabled selected hidden>Géneros</option>
+            <option class="dropdown-genero-opcion" value="">Todas</option>
+            <option class="dropdown-genero-opcion" value="ACCION" {% if categoria_actual == 'ACCION' %}selected{% endif %}>Acción</option>
+            <option class="dropdown-genero-opcion" value="COMEDIA" {% if categoria_actual == 'COMEDIA' %}selected{% endif %}>Comedia</option>
+            <option class="dropdown-genero-opcion" value="DRAMA" {% if categoria_actual == 'DRAMA' %}selected{% endif %}>Drama</option>
+            <option class="dropdown-genero-opcion" value="AVENTURA" {% if categoria_actual == 'AVENTURA' %}selected{% endif %}>Aventura</option>
+            <option class="dropdown-genero-opcion" value="TERROR" {% if categoria_actual == 'TERROR' %}selected{% endif %}>Terror</option>
+            <option class="dropdown-genero-opcion" value="CIENCIA FICCION" {% if categoria_actual == 'CIENCIA FICCION' %}selected{% endif %}>Ciencia ficción</option>
+        </select>
+      </form>
+    </a>
+    </li>
     <i class="uil uil-times navCloseBtn"></i> <!-- Mover este ícono dentro de la lista -->
   </ul>
   <i class="uil uil-search search-icon" id="searchIcon"></i>
   <div class="search-box">
     <i class="uil uil-search search-icon" id="searchIconMain"></i>
-    <input type="text" placeholder="Search here..." />
+    <form class="search-form" action="{% url 'PeliculasView' %}" method="GET">
+      <input type="text" placeholder="Buscar..." name="busqueda" />
+    </form>
   </div>
 </nav>
 

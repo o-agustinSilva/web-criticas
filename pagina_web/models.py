@@ -48,6 +48,7 @@ class Pelicula(models.Model):
     foto            = models.ImageField(upload_to='imagenes_peliculas/', blank=True, null=True)
     nombre          = models.CharField(max_length = 70)
     resumen         = models.CharField(max_length = 3000)
+    critica_mono    = models.CharField(max_length = 3000, default = '')
     categoria       = models.CharField(
                                         max_length  = 20, 
                                         choices     = CATEGORIAS_PELICULAS,

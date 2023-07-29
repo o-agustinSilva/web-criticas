@@ -49,9 +49,8 @@
                 <div class="col d-flex">
                     <div class="contenedor-resumen">
                     
-                    <p>Mi estimado señor,</br></br>
-                        Permítame ofrecerle mi distinguida apreciación de la obra maestra literaria y cinematográfica conocida como "El Señor de los Anillos: La Comunidad del Anillo". Es innegable que esta epopeya, concebida por el venerado autor J.R.R. Tolkien, posee una magnificencia atemporal que cautiva los sentidos y deleita a la mente más refinada.</p>
-                    <p>La trama, engalanada con una prosa exquisita y una narrativa hábilmente entrelazada, nos transporta a un mundo de fantasía con una profundidad y riqueza inigualables. Tolkien, con maestría indiscutible, crea un universo vasto y convincente, donde la lucha del bien contra el mal adquiere proporciones épicas. A través de su pluma, se explora el valor de la amistad, el sacrificio desinteresado y la búsqueda de la redención, principios que trascienden las eras y las culturas.</p>
+                    <p> {{ pelicula.critica_mono|linebreaksbr }} </p>
+
                     </div>
                     <img src="{% static 'imagenes/Mono.png' %}" alt="" class="mono-criticon">
                 </div>
@@ -66,13 +65,19 @@
                         <div class="col-md-12">
                             <h1 class="titulo-comentarios">El veredicto de los chimpancés</h1>
                         </div>
-                        {% for critica in criticas %}
+                        {% for critica, estrellas in criticas_con_estrellas %}
                             <div class="row container-critica-usuario">
                                 <div class="col-md-1 foto-usuario">
                                     <img src="https://img.freepik.com/vector-premium/chimpance-bebe-dibujos-animados-sosteniendo-platano_29190-4734.jpg" alt="user_pic">
                                 </div>
-                                <div class="col-md-11 contenido-usuario">                         
-                                    <h1>{{ critica.nombre }}</h1>
+                                <div class="col-md-11 contenido-usuario">    
+                                    <div class="nombre-y-puntaje">
+                                        <h1>{{ critica.nombre }}</h1>
+                                        {% for _ in estrellas %}
+                                            <a href="#"><i class="fas fa-star" style="color: yellow;"></i></a>
+                                        {% endfor %}
+                                    </div>                     
+
                                     <p class="comment">{{ critica.critica }}</p>
                                     <a href="#" class="ver-mas" onclick="expandirComentario(event)">Ver más</a>
                                     <a href="#" class="mostrar-menos" onclick="contraerComentario(event)">Mostrar menos</a>                  

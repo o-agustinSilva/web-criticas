@@ -20,6 +20,7 @@ class PeliculaForm(ModelForm):
         fields = '__all__'
         widgets = {
             'resumen': Textarea(attrs={'rows': 10, 'cols': 80}),
+            'critica_mono': Textarea(attrs={'rows': 10, 'cols':80}),
         }
 
 class PeliculaAdmin(admin.ModelAdmin):
@@ -32,30 +33,29 @@ class PeliculaAdmin(admin.ModelAdmin):
 
 # Aprobnar o desaprobar una critica
 class CriticaAdmin(admin.ModelAdmin):
-    list_display    = ('critica', 'nombre', 'correo', 'estado', 'puntaje', 'pelicula')
-    list_filter     = ('estado', 'puntaje')
-    search_fields   = ('nombre', 'correo', 'pelicula__nombre')
+    list_display = ('critica', 'nombre', 'correo', 'estado', 'puntaje', 'pelicula')
+    list_filter = ('estado', 'puntaje')
+    search_fields = ('nombre', 'correo', 'pelicula__nombre')
+    actions = ['aprobar_criticas', 'rechazar_criticas', 'eliminar_criticas']
 
     def has_delete_permission(self, request, obj=None):
-        # Deshabilitar la opción de borrar en el administrador
-        return False
-
-    def get_actions(self, request):
-        # Eliminar la acción de borrado en masa
-        actions = super().get_actions(request)
-        if 'delete_selected' in actions:
-            del actions['delete_selected']
-        return actions
-
-    actions = ['aprobar_criticas', 'rechazar_criticas']
+        # Allow delete permission for all users
+        return True
 
     def aprobar_criticas(self, request, queryset):
-        # Lógica para aprobar las críticas seleccionadas
+        # Logic to approve the selected criticas
         queryset.update(estado='Aprobada')
 
     def rechazar_criticas(self, request, queryset):
-        # Lógica para rechazar las críticas seleccionadas
+        # Logic to reject the selected criticas
         queryset.update(estado='Rechazada')
+
+    def eliminar_criticas(self, request, queryset):
+        # Logic to delete the selected criticas
+        queryset.delete()
+
+    eliminar_criticas.short_description = "Eliminar criticas"
+
 
 admin.site.register(Critica, CriticaAdmin)
 admin.site.register(Director, DirectorAdmin)

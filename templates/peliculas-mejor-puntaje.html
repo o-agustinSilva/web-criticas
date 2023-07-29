@@ -16,95 +16,48 @@
 <body>
     <div class="container">
         <div class="row">
-            <div class="col">
-                <section id ="slider-container">
-                    <div class="tarjeta">
-                        <div class="tarjeta-imagen">
-                            <img src="{% static '../static/imagenes/eldenRing.jpg' %}" alt="">
-                        </div>
-                        <div class="tarjeta-detalles">
-                            <strong>Titulo de la pelicula (Año)</strong>
-                            <div class="rating">
-                                <a href="#"><i class="fas fa-star"></i></a>
-                                <a href="#"><i class="fas fa-star"></i></a>
-                                <a href="#"><i class="fas fa-star"></i></a>
-                                <a href="#"><i class="fas fa-star"></i></a>
-                                <a href="#"><i class="far fa-star"></i></a>
+            {% for pelicula in peliculas_mejor_puntaje%}
+                <div class="col">
+                    <section id ="slider-container">
+                        <div class="tarjeta">
+                            <div class="tarjeta-imagen">
+                                <img src="{{ pelicula.foto.url }}" alt="">
                             </div>
-        
-                            <p>Elden Ring (エルデンリング Eruden Ringu?) es un videojuego de rol de acción desarrollado por FromSoftware y publicado por Bandai Namco Entertainment. El videojuego surge de una colaboración entre el director y diseñador Hidetaka Miyazaki y el novelista de fantasía George R. R. Martin. Fue lanzado a nivel mundial el 25 de febrero de 2022 para las plataformas Xbox One, Xbox Series X/S, Microsoft Windows, PlayStation 4, PlayStation 5.1​2​Actualmente se encuentra en desarrollo una expansión titulada Shadow of the Erdtree, anunciada en febrero de 2023.</p>
-        
-                            <div class="tarjeta-botones">
-                                <a href="#" class="trailer-btn">Ver reseña</a>
-                                <a href="#" class="play-btn"><i class="fas fa-play"></i>Trailer</a>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-            </div>
-            <div class="col">
-                <section id ="slider-container">
-                    <div class="tarjeta">
-                        <div class="tarjeta-imagen">
-                            <img src="{% static '../static/imagenes/malenia.jpg' %}" alt="">
-                        </div>
-                        <div class="tarjeta-detalles">
-                            <strong>Titulo de la pelicula (Año)</strong>
-                            <div class="rating">
-                                <a href="#"><i class="fas fa-star"></i></a>
-                                <a href="#"><i class="fas fa-star"></i></a>
-                                <a href="#"><i class="fas fa-star"></i></a>
-                                <a href="#"><i class="fas fa-star"></i></a>
-                                <a href="#"><i class="far fa-star"></i></a>
-                            </div>
-        
-                            <p>Descripción de la pélicula</p>
-        
-                            <div class="tarjeta-botones">
-                                <a href="#" class="trailer-btn">Ver reseña</a>
-                                <a href="#" class="play-btn"><i class="fas fa-play"></i>Trailer</a>
+                            <div class="tarjeta-detalles">
+                                <strong>{{ pelicula.nombre }} ({{ pelicula.anio_pelicula }})</strong>
+                                <div class="rating">
+                                    {% for _ in pelicula.estrellas_llenas %}
+                                        <a href="#"><i class="fas fa-star" style="color: yellow;"></i></a>
+                                    {% endfor %}
+            
+                                    {% for _ in pelicula.estrellas_vacias %}
+                                        <a href="#"><i class="far fa-star" style="color: grey;"></i></a>
+                                    {% endfor %}
+                                </div>
+                                
+                                <div class="tarjeta-resumen-pelicula">
+                                    <p>{{ pelicula.resumen }}</p>
+                                </div>
+                                
+                                <div class="tarjeta-botones">
+                                    <a href="{% url 'PeliculaView' id=pelicula.id%}" class="trailer-btn">Ver reseña</a>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </section>
-            </div>
-            <div class="col">
-                <section id ="slider-container">
-                    <div class="tarjeta">
-                        <div class="tarjeta-imagen">
-                            <img src="{% static '../static/imagenes/malenia.jpg' %}" alt="">
-                        </div>
-                        <div class="tarjeta-detalles">
-                            <strong>Titulo de la pelicula (Año)</strong>
-                            <div class="rating">
-                                <a href="#"><i class="fas fa-star"></i></a>
-                                <a href="#"><i class="fas fa-star"></i></a>
-                                <a href="#"><i class="fas fa-star"></i></a>
-                                <a href="#"><i class="fas fa-star"></i></a>
-                                <a href="#"><i class="far fa-star"></i></a>
-                            </div>
-        
-                            <p>Descripción de la pélicula</p>
-        
-                            <div class="tarjeta-botones">
-                                <a href="#" class="trailer-btn">Ver reseña</a>
-                                <a href="#" class="play-btn"><i class="fas fa-play"></i>Trailer</a>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-            </div>
-           
+                    </section>
+                </div>     
+            {% endfor %}
         </div>
     </div>
        
 </div>
 </body>
-
+<!--
 <script type="text/javascript">
     VanillaTilt.init(document.querySelectorAll(".tarjeta"), {
         max: 25,
         speed: 400
     });
 </script>
+-->
 {% endblock %}

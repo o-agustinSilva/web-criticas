@@ -1,0 +1,35 @@
+{% extends 'master.html'%}
+{% load static %}
+
+{% block content %}
+    {% include 'header.html' %}
+
+    <div class="container-fluid">
+
+        <div class="row">
+            <div class="col-md-12 header-directores">
+                <h1>Listado de directores</h1>
+                <h1>Agregar opción de filtro y display: flex</h1>
+            </div>
+        </div>
+
+        <div class="row listado-directores">
+            {% for director in directores %}
+                <div class="col-md-4 card-actor">
+                    <div class="card-actor-cover">
+                        <a href="{% url 'DirectorView' id_director=director.id %}">
+                            <div class="image-wrapper">
+                                <a href="{% url 'DirectorView' id_director=director.id %}"><img src="{{ director.foto.url }}" alt="Imagen del director"></a>
+                            </div>
+                            <div class="director-name">
+                                <h2>{{ director.nombre }}</h2>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+
+    </div>
+
+{% endblock %}
