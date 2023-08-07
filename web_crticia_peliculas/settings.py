@@ -17,7 +17,7 @@ SECRET_KEY = 'django-insecure-ac4o6vwe%o#9$bp8q-wyj=p@&z)tg5qkitg646k*$0(%mmsut6
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['149.50.129.179', 'monitoscriticones.sytes.net']
 
 
 # Application definition
@@ -123,5 +123,5 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Cookies
-SESSION_COOKIE_SAMESITE = 'Lax'  # Especifica SameSite=None para permitir solicitudes de sitios cruzados
-SESSION_COOKIE_SECURE = True  # Asegúrate de que la conexión sea segura (HTTPS)
+# SESSION_COOKIE_SAMESITE = 'Lax'  # Especifica SameSite=None para permitir solicitudes de sitios cruzados
+# SESSION_COOKIE_SECURE = True  # Asegúrate de que la conexión sea segura (HTTPS)

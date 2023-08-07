@@ -3,12 +3,12 @@
 {% block content %}
 <nav class="nav">
   <i class="uil uil-bars navOpenBtn"></i>
-    <a href="http://127.0.0.1:8000/#" class="logo">Monitos criticones</a>
+    <a href="#" class="logo">Monitos criticones</a>
   <ul class="nav-links">
-    <li><a href="http://127.0.0.1:8000/#" id="inicio-tab">Inicio</a></li>
-    <li><a href="http://127.0.0.1:8000/Peliculas/" id="peliculas-tab">Peliculas</a></li>
-    <li><a href="http://127.0.0.1:8000/Actores/" id="actores-tab">Actores</a></li>
-    <li><a href="http://127.0.0.1:8000/Directores/" id="directores-tab">Directores</a></li>    
+    <li><a href="/" id="inicio-tab">Inicio</a></li>
+    <li><a href="/Peliculas/" id="peliculas-tab">Peliculas</a></li>
+    <li><a href="/Actores/" id="actores-tab">Actores</a></li>
+    <li><a href="/Directores/" id="directores-tab">Directores</a></li>    
     <li><a>
       <form action="{% url 'PeliculasView' %}" method="GET">
         <select class="dropdown-genero" name="categoria" onchange="this.form.submit()">
