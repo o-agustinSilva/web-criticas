@@ -17,12 +17,13 @@ SECRET_KEY = 'django-insecure-ac4o6vwe%o#9$bp8q-wyj=p@&z)tg5qkitg646k*$0(%mmsut6
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['149.50.129.179', 'monitoscriticones.sytes.net']
+ALLOWED_HOSTS = ['149.50.129.179', 'monitoscriticones.sytes.net', '127.0.0.1']
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -31,6 +32,29 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'pagina_web',
 ]
+
+JAZZMIN_SETTINGS = {
+    "site_title": "Monitos administradores",
+    "site_header": "Monitos administradores",
+    "site_brand": "Mono administrador",
+    "site_logo": "../static/imagenes/bananin.png",
+    "welcome_sign": "Administración de monitos criticones",
+    "topmenu_links": [
+
+        # Url that gets reversed (Permissions can be added)
+        {"name": "Home",  "url": "admin:index", "permissions": ["auth.view_user"]},
+
+        # external url that opens in a new window (Permissions can be added)
+        {"name": "Support", "url": "https://github.com/farridav/django-jazzmin/issues", "new_window": True},
+
+        # model admin to link to (Permissions checked against model)
+        {"model": "auth.User"},
+
+        # App with dropdown menu to all its models pages (Permissions checked against models)
+        {"app": "books"},
+    ],
+    "navigation_expanded": True,
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

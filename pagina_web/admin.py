@@ -37,6 +37,7 @@ class CriticaAdmin(admin.ModelAdmin):
     list_filter = ('estado', 'puntaje')
     search_fields = ('nombre', 'correo', 'pelicula__nombre')
     actions = ['aprobar_criticas', 'rechazar_criticas', 'eliminar_criticas']
+    readonly_fields = ('critica', 'nombre', 'correo', 'puntaje', 'pelicula')
 
     def has_delete_permission(self, request, obj=None):
         # Allow delete permission for all users

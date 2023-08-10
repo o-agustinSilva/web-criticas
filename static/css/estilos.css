@@ -424,6 +424,7 @@ body{
 		display: none;
 	}
 
+
 	/* Estilos para max-width: 1000px */
 	@media screen and (max-width: 1000px) {
 		.peliculas-recomendadas .contenedor-carousel .carousel {
@@ -432,10 +433,17 @@ body{
 		} 
 	}
 
-	/* Estilos para max-width: 800px */
-	@media screen and (max-width: 800px) {
+    @media screen and (max-width: 800px) {
 		.peliculas-recomendadas .contenedor-carousel .carousel {
 			grid-template-columns: repeat(2, 1fr);
+			gap: 15px;
+		} 
+	}
+
+	/* Estilos para max-width: 800px */
+	@media screen and (max-width: 600px) {
+		.peliculas-recomendadas .contenedor-carousel .carousel {
+			grid-template-columns: repeat(1, 1fr);
 			gap: 10px;
 		} 
 
@@ -444,35 +452,15 @@ body{
 		.peliculas-recomendadas .flecha-derecha {
 			display: none;
 		}
-	}
 
-    /* TARJETAS */ 
+        
+	}
 
     .tarjeta{
         flex-direction: column;
     }
-    .tarjeta-detalles{
-        width: 100px;
-        max-height: 480px !important;
-        position: absolute;
-    }
-    .tarjeta-botones{
-        flex-direction: column;
-        position: relative;
-        bottom: 0;
-    }
     .tarjeta-imagen{
-        width: 230px;
-        border-radius: 10px 10px 0px 0px;
-    }
-
-    .tarjeta-detalles strong{
-        font-size: 1rem;
-    }
-    .tarjeta-botones{
-        width: 100%;
-        border-radius: 0px;
-        margin: 5px 0px;
+        min-width: 350px;
     }
 }
 
